@@ -1,10 +1,11 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import styles from "../styles/Banner.module.scss";
 
 const Banner = () => {
 	return (
-		<div className="carousel__container">
-			<div className="gradient" />
+		<div className={styles.container}>
+			<div className={styles.gradient} />
 			<Carousel
 				autoPlay
 				infiniteLoop

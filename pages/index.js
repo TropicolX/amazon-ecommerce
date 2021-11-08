@@ -21,7 +21,7 @@ export default function Home({ products }) {
 }
 
 export async function getServerSideProps(context) {
-	const products = await fetch("http://127.0.0.1:8000/products/").then(
+	const products = await fetch("http://127.0.0.1:8000/api/products/").then(
 		(res) => res.json()
 	);
 

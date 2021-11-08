@@ -1,0 +1,35 @@
+@import "utilities";
+
+.productFeed {
+	display: grid;
+	grid-auto-flow: row dense;
+	margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+	.productFeed {
+		margin-top: -8em;
+		grid-template-columns: repeat(2, 1fr);
+
+		.advert {
+			grid-column: 1 / -1;
+		}
+
+		.secondSet {
+			grid-column: span 2 / span 2;
+		}
+	}
+}
+
+@media (min-width: 1024px) {
+	.productFeed {
+		margin-top: -13rem;
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (min-width: 1536px) {
+	.productFeed {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}

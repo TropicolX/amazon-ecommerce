@@ -1,11 +1,36 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
-
-$font-stack: "Nunito Sans", sans-serif;
+@import "utilities";
 
 * {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+}
+
+html,
+body {
+	font-family: $font-stack;
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+	width: 100%;
+}
+
+main {
+	max-width: 1536px;
+	margin: 0 auto;
+}
+
+.home {
+	background: $bg-gray;
+}
+
+.rc-rate-star {
+	margin-right: 0 !important;
 }
 
 // Use em for font-size
@@ -69,28 +94,3 @@ $font-stack: "Nunito Sans", sans-serif;
 // line-height: 2rem;
 // text-3xl	font-size: 1.875rem;
 // line-height: 2.25rem;
-
-:root {
-	--amazon-blue: hsl(214, 27%, 10%);
-	--amazon-light-blue: hsl(213, 28%, 19%);
-	--amazon-yellow: hsl(43, 96%, 56%);
-	--bg-gray: hsl(220, 14%, 96%);
-}
-
-html,
-body {
-	font-family: $font-stack;
-}
-
-a {
-	text-decoration: none;
-}
-
-main {
-	max-width: 1536px;
-	margin: 0 auto;
-}
-
-.home {
-	background: var(--bg-gray);
-}
