@@ -1,0 +1,97 @@
+@import "utilities";
+
+.top {
+	background: #394450;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+	padding: 0.5rem;
+
+	.icon {
+		color: white;
+		width: 1.2rem;
+		margin-bottom: 0.2rem;
+	}
+
+	p {
+		@extend %text-xs;
+		text-transform: uppercase;
+	}
+}
+
+.middle {
+	display: flex;
+	align-items: baseline;
+	padding: 1.25rem;
+	background: #1d242c;
+	color: white;
+
+	& > :nth-child(2) {
+		margin-left: 3rem;
+	}
+	li {
+		padding: 0.5rem 0;
+		cursor: pointer;
+	}
+}
+
+.bottom {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: #020a14;
+	padding: 2rem 1.25rem;
+	color: white;
+
+	.settings {
+		display: flex;
+		align-items: center;
+		margin-bottom: 1.25rem;
+
+		p {
+			cursor: pointer;
+			display: flex;
+			align-content: center;
+			padding: 0 1rem;
+		}
+		.icon {
+			width: 1.3rem;
+			margin-right: 0.5rem;
+		}
+	}
+
+	.signIn {
+		cursor: pointer;
+		font-weight: 600;
+		margin-bottom: 1.25rem;
+	}
+
+	.legal {
+		font-size: 0.75rem;
+		font-weight: 300;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		ul {
+			cursor: pointer;
+			display: flex;
+			margin-bottom: 0.6rem;
+
+			& > :nth-child(n) {
+				margin-left: 0.8rem;
+			}
+
+			& > :nth-child(1) {
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.middle {
+		justify-content: space-around;
+	}
+}

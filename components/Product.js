@@ -1,23 +1,58 @@
+/* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
-import Image from "next/image";
-import { StarIcon } from "@heroicons/react/solid";
-import Rate from "rc-rate";
-import "rc-rate/assets/index.css";
 import Currency from "react-currency-formatter";
-import Truncate from "react-truncate";
-import styles from "../styles/Product.module.scss";
+import Image from "next/image";
+import Rate from "rc-rate";
+import { StarIcon } from "@heroicons/react/solid";
+import { useDispatch } from "react-redux";
+import "rc-rate/assets/index.css";
 
-const Product = ({ id, name, price, description, category, image, rating }) => {
+import { addToCart } from "../redux";
+import styles from "../styles/Product.module.scss";
+import Truncate from "react-truncate";
+
+const Product = ({
+	id,
+	name,
+	price,
+	description = "",
+	category,
+	image,
+	average_rating,
+	ratings_count,
+}) => {
+	const dispatch = useDispatch();
+
 	const [hasPrime] = useState(Math.random() < 0.5);
 	const star = <StarIcon className={styles.star} />;
+
+	const addProduct = () => {
+		const product = {
+			id,
+			name,
+			price,
+			description,
+			category,
+			image,
+			average_rating,
+			ratings_count,
+		};
+		dispatch(addToCart(product));
+	};
 
 	return (
 		<div className={styles.productCard}>
 			<p className={styles.category}>{category}</p>
-			<Image src={image} height={200} width={200} objectFit="contain" />
+			<Image
+				alt="product-card"
+				src={image}
+				height={200}
+				width={200}
+				objectFit="contain"
+			/>
 			<h4 className={styles.name}>{name}</h4>
 			<Rate
-				value={rating.rate}
+				value={average_rating}
 				disabled={true}
 				allowHalf={true}
 				allowClear={false}
@@ -25,6 +60,7 @@ const Product = ({ id, name, price, description, category, image, rating }) => {
 			/>
 			{!hasPrime && (
 				<img
+					alt="amazon-choice"
 					src="https://m.media-amazon.com/images/G/01/amazonsChoice/acBadge-p13n.svg"
 					id={styles.amazonChoice}
 				/>
@@ -39,12 +75,14 @@ const Product = ({ id, name, price, description, category, image, rating }) => {
 				<div className={styles.prime}>
 					<img
 						src="https://links.papareact.com/fdw"
-						alt="amazon prime"
+						alt="amazon-prime"
 					/>
 					<p>FREE Next-day Delivery</p>
 				</div>
 			)}
-			<button className={styles.button}>Add to cart</button>
+			<button className={styles.button} onClick={addProduct}>
+				Add to cart
+			</button>
 		</div>
 	);
 };

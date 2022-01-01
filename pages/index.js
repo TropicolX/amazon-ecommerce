@@ -1,6 +1,7 @@
-import Head from "next/head";
-import Image from "next/image";
+import axios from "../axios";
 import Banner from "../components/Banner";
+import Footer from "../components/Footer";
+import Head from "next/head";
 import Header from "../components/Header";
 import ProductFeed from "../components/ProductFeed";
 
@@ -16,14 +17,15 @@ export default function Home({ products }) {
 				<Banner />
 				<ProductFeed products={products} />
 			</main>
+			<Footer />
 		</div>
 	);
 }
 
 export async function getServerSideProps(context) {
-	const products = await fetch("http://127.0.0.1:8000/api/products/").then(
-		(res) => res.json()
-	);
+	const products = await axios
+		.get("products/")
+		.then((response) => response.data);
 
 	return {
 		props: {

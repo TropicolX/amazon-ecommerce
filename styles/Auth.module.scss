@@ -1,0 +1,136 @@
+@import "utilities";
+
+.home {
+	background: white;
+}
+
+.container {
+	padding: 1.25rem;
+	background: white;
+	margin: 0 auto;
+	max-width: 30rem;
+}
+
+.error {
+	display: flex;
+	padding: 1rem;
+	border: 2.5px solid #c78c8c7d;
+	border-radius: 0.125rem;
+	outline: 1px solid $text-red;
+	margin: 1.25rem auto;
+
+	.icon {
+		width: 2.2rem;
+		color: $text-red;
+		margin-top: -5px;
+	}
+
+	.text {
+		margin-left: 0.8rem;
+	}
+
+	h2 {
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: $text-red;
+	}
+
+	p {
+		font-size: 0.95rem;
+	}
+}
+
+.formContainer {
+	padding: 1.25rem;
+	border: 1px solid $text-gray;
+	border-radius: 0.125rem;
+
+	h1 {
+		font-size: 1.5rem;
+		line-height: 2rem;
+		margin-bottom: 0.25rem;
+	}
+	form {
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+	}
+	label {
+		font-size: 0.95rem;
+		line-height: 1.5rem;
+		font-weight: 700;
+		margin-top: 1rem;
+	}
+	input {
+		border: 1.5px solid $text-gray;
+		padding: 0.5rem;
+		height: 2rem;
+	}
+
+	input:focus {
+		outline: none;
+	}
+	button {
+		@extend %btn-submit;
+		font-size: 0.95rem;
+		margin: 1.2rem 0;
+		margin-bottom: 1.25rem;
+	}
+
+	small {
+		font-weight: 600;
+	}
+
+	span {
+		color: $text-blue;
+		cursor: pointer;
+	}
+}
+
+.alt {
+	display: flex;
+	flex-direction: column;
+	margin: 1.25rem auto;
+
+	small {
+		position: relative;
+		text-align: center;
+		color: $text-dark-gray;
+		font-weight: 600;
+		margin-bottom: 0.8rem;
+	}
+
+	small::before {
+		content: "";
+		position: absolute;
+		background-color: $text-gray;
+		height: 1px;
+		width: 35%;
+		top: 0;
+		left: 0;
+		margin-top: 8px;
+	}
+
+	.signUp::before {
+		width: 28%;
+	}
+
+	small::after {
+		content: "";
+		position: absolute;
+		background-color: $text-gray;
+		height: 1px;
+		width: 35%;
+		top: 0;
+		right: 0;
+		margin-top: 8px;
+	}
+
+	.signUp::after {
+		width: 28%;
+	}
+
+	button {
+		@extend %btn-secondary;
+	}
+}

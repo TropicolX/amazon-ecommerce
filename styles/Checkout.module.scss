@@ -1,0 +1,42 @@
+@import "utilities";
+
+.checkout {
+	background: $bg-gray;
+}
+
+.left {
+	flex-grow: 1;
+	margin: 1.25rem;
+}
+
+.cart {
+	display: flex;
+	flex-direction: column;
+	padding: 1.25rem;
+	background: $white;
+
+	// space-y-10
+	& > :nth-child(n) {
+		margin-top: 2.5rem;
+	}
+
+	& > :nth-child(1) {
+		margin-top: 0;
+	}
+
+	h1 {
+		@extend %text-3xl;
+		border-bottom: $bg-gray solid 1px;
+		padding-bottom: 1rem;
+	}
+}
+
+.right {
+	position: relative;
+}
+
+@media (min-width: 1024px) {
+	.main {
+		display: flex;
+	}
+}

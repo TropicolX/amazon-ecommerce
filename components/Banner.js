@@ -1,5 +1,7 @@
-import { Carousel } from "react-responsive-carousel";
+/* eslint-disable @next/next/no-img-element */
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+
 import styles from "../styles/Banner.module.scss";
 
 const Banner = () => {

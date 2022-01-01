@@ -6,6 +6,10 @@ $amazon-dark-yellow: hsl(38, 92%, 50%);
 $bg-gray: hsl(220, 14%, 96%);
 $text-gray: hsl(218, 11%, 65%);
 $text-dark-gray: hsl(216, 7%, 29%);
+$text-blue: hsl(224, 70%, 53%);
+$text-red: hsl(4, 81%, 54%);
+$white: hsl(0, 0%, 100%);
+$black: hsl(0, 0%, 0%);
 $font-stack: "Nunito Sans", sans-serif;
 
 %flex {
@@ -18,6 +22,11 @@ $font-stack: "Nunito Sans", sans-serif;
 	line-height: 1rem;
 }
 
+%text-3xl {
+	font-size: 1.875rem;
+	line-height: 2.25rem;
+}
+
 %btn {
 	padding: 0.5rem;
 	border: 2px solid #fcd34d;
@@ -27,6 +36,7 @@ $font-stack: "Nunito Sans", sans-serif;
 		$amazon-light-yellow,
 		$amazon-yellow
 	);
+	cursor: pointer;
 
 	&:focus {
 		outline: none;
@@ -38,6 +48,25 @@ $font-stack: "Nunito Sans", sans-serif;
 			$amazon-dark-yellow,
 			$amazon-yellow
 		);
+	}
+}
+
+%btn-secondary {
+	@extend %btn;
+	border: 1px solid $text-gray;
+	background-image: linear-gradient(to bottom, #ededed, #d9d9d9);
+	&:active {
+		background-image: linear-gradient(to bottom, #b4b9c1, #d9d9d9);
+	}
+}
+
+%btn-submit {
+	@extend %btn;
+	border: 1px solid #a88734 #9c7e31 #846a29;
+	outline: 1px solid $text-gray;
+	background-image: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+	&:active {
+		background-image: linear-gradient(to bottom, #bea66b, #f0c14b);
 	}
 }
 
