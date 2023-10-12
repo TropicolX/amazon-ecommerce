@@ -14,7 +14,8 @@ export default function Home() {
 			const products = await axios
 				.get("products/")
 				.then((response) => response.data);
-			setProducts(products);
+			const finalProducts = products.slice(0, 30);
+			setProducts(finalProducts);
 			setLoading(false);
 		};
 

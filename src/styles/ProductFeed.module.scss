@@ -4,6 +4,7 @@
 	display: grid;
 	grid-auto-flow: row dense;
 	margin: 0 auto;
+	z-index: 100;
 }
 
 @media (min-width: 768px) {

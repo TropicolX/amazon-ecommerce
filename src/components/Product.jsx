@@ -41,7 +41,12 @@ const Product = ({
 	return (
 		<div className={styles.productCard}>
 			<p className={styles.category}>{category}</p>
-			<img alt="product-image" src={image} className={styles.image} />
+			<img
+				alt="product-image"
+				loading="lazy"
+				src={image}
+				className={styles.image}
+			/>
 			<h4 className={styles.name}>{name}</h4>
 			<Rate
 				value={average_rating}
@@ -54,7 +59,7 @@ const Product = ({
 				<img
 					alt="amazon-choice"
 					src="https://m.media-amazon.com/images/G/01/amazonsChoice/acBadge-p13n.svg"
-					id={styles.amazonChoice}
+					className={styles.amazonChoice}
 				/>
 			)}
 			<p className={styles.description}>{description}</p>
