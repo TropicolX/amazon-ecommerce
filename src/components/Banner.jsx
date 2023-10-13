@@ -1,3 +1,4 @@
+import { bannerUrl } from "../constants";
 import styles from "../styles/Banner.module.scss";
 
 const Banner = () => {
@@ -6,7 +7,7 @@ const Banner = () => {
 			<div className={styles.gradient} />
 			<div>
 				<img
-					src="https://links.papareact.com/gi1"
+					src={bannerUrl}
 					alt="audible original"
 					className={styles.image}
 				/>
