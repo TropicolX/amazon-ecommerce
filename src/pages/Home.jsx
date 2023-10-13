@@ -35,7 +35,7 @@ export default function Home() {
 
 			const firstThreeProductImages = products
 				.slice(0, 3)
-				.map((product) => product.image);
+				.map((product) => product.images[0]);
 
 			// Preload images and fetch data
 			preloadImages([...imagesToPreload, ...firstThreeProductImages]);
