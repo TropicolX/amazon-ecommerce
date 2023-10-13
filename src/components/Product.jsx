@@ -1,13 +1,14 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import Rate from "rc-rate";
 import { StarIcon } from "@heroicons/react/solid";
 import { useDispatch } from "react-redux";
 
 import { addToCart } from "../store/cartSlice";
+import { amazonChoiceUrl } from "../constants";
 
 import styles from "../styles/Product.module.scss";
 import "rc-rate/assets/index.css";
-import { amazonChoiceUrl } from "../constants";
 
 const Product = ({
 	id,
@@ -16,9 +17,9 @@ const Product = ({
 	description = "",
 	category,
 	image,
-	average_rating,
 	ratings_count,
 	discountedPrice,
+	average_rating,
 }) => {
 	const dispatch = useDispatch();
 
@@ -83,6 +84,18 @@ const Product = ({
 			</button>
 		</div>
 	);
+};
+
+Product.propTypes = {
+	id: PropTypes.number.isRequired,
+	name: PropTypes.string.isRequired,
+	price: PropTypes.number.isRequired,
+	description: PropTypes.string,
+	category: PropTypes.string.isRequired,
+	image: PropTypes.string.isRequired,
+	ratings_count: PropTypes.number.isRequired,
+	discountedPrice: PropTypes.string,
+	average_rating: PropTypes.number.isRequired,
 };
 
 export default Product;

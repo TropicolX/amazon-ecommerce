@@ -1,4 +1,5 @@
 import { FixedSizeGrid as Grid } from "react-window";
+import PropTypes from "prop-types";
 
 import Product from "./Product";
 
@@ -57,6 +58,10 @@ const ProductFeed = ({ products }) => {
 			{cellRenderer}
 		</Grid>
 	);
+};
+
+ProductFeed.propTypes = {
+	products: PropTypes.array.isRequired,
 };
 
 export default ProductFeed;

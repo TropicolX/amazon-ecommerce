@@ -17,7 +17,7 @@ export default function Home() {
 
 	const fetchProducts = async () => {
 		const products = await axios
-			.get("products/?offset=0&limit=30")
+			.get("products/?offset=0&limit=10")
 			.then((response) => response.data);
 
 		const updatedProducts = await calculateDiscountedPrices(
@@ -26,17 +26,23 @@ export default function Home() {
 		);
 
 		setProducts(updatedProducts);
-		setLoading(false);
+		return updatedProducts;
 	};
 
 	useEffect(() => {
-		// Preload images and fetch data
-		const cleanupPreload = preloadImages(imagesToPreload, fetchProducts);
+		const fetchData = async () => {
+			const products = await fetchProducts();
 
-		// Clean up preloaded images when the component is unmounted
-		return () => {
-			cleanupPreload();
+			const firstThreeProductImages = products
+				.slice(0, 3)
+				.map((product) => product.image);
+
+			// Preload images and fetch data
+			preloadImages([...imagesToPreload, ...firstThreeProductImages]);
+			setLoading(false);
 		};
+
+		fetchData();
 	}, []);
 
 	if (loading) return <Loading />;

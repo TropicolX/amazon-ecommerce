@@ -1,24 +1,8 @@
-export const preloadImages = (images, callback) => {
-	const preloadedImages = [];
-	let loadedImages = 0;
-
+export const preloadImages = (images) => {
 	images.forEach((imageUrl) => {
 		const img = new Image();
 		img.src = imageUrl;
-		img.onload = () => {
-			loadedImages++;
-			if (loadedImages === images.length) {
-				// All images are loaded, invoke the callback function
-				callback();
-			}
-		};
-		preloadedImages.push(img);
 	});
-
-	return () => {
-		// Clean up: remove event listeners and references to preloaded images
-		preloadedImages.forEach((img) => (img.onload = null));
-	};
 };
 
 export const calculateDiscountedPrices = (worker, products) => {

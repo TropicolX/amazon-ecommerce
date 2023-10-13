@@ -5,10 +5,12 @@ import {
 } from "@heroicons/react/outline";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import styles from "../styles/Header.module.scss";
 import { selectCartItems } from "../store/cartSlice";
 import { logoUrl } from "../constants";
+
+import styles from "../styles/Header.module.scss";
 
 const Header = ({ showLogoOnly = false }) => {
 	const cartItems = useSelector(selectCartItems);
@@ -60,7 +62,14 @@ const Header = ({ showLogoOnly = false }) => {
 				{/* Search */}
 				{!showLogoOnly && (
 					<div className={styles.search}>
-						<input className={styles.searchInput} type="text" />
+						<label htmlFor="search" className="sr-only">
+							Search
+						</label>
+						<input
+							id="search"
+							className={styles.searchInput}
+							type="text"
+						/>
 						<div className={styles.searchIconWrap}>
 							<SearchIcon className={styles.searchIcon} />
 						</div>
@@ -85,6 +94,10 @@ const Header = ({ showLogoOnly = false }) => {
 			)}
 		</header>
 	);
+};
+
+Header.propTypes = {
+	showLogoOnly: PropTypes.bool,
 };
 
 export default Header;
