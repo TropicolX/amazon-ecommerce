@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 
 import { addToCart } from "../store/cartSlice";
 import { amazonChoiceUrl } from "../constants";
+import LazyImage from "./LazyImage";
 
 import styles from "../styles/Product.module.scss";
 import "rc-rate/assets/index.css";
@@ -44,7 +45,7 @@ const Product = ({
 	return (
 		<div className={styles.productCard}>
 			<p className={styles.category}>{category}</p>
-			<img
+			<LazyImage
 				alt="product-image"
 				loading="lazy"
 				src={image}

@@ -2,7 +2,6 @@ export const preloadImages = (images) => {
 	images.forEach((imageUrl) => {
 		const img = new Image();
 		img.src = imageUrl;
-		console.log(imageUrl);
 	});
 };
 

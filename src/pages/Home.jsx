@@ -17,7 +17,7 @@ export default function Home() {
 
 	const fetchProducts = async () => {
 		const products = await axios
-			.get("products/?offset=0&limit=10")
+			.get("products/?offset=0&limit=9")
 			.then((response) => response.data);
 
 		const updatedProducts = await calculateDiscountedPrices(
