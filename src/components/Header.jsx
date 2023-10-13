@@ -7,9 +7,11 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import styles from "../styles/Header.module.scss";
+import { selectCartItems } from "../store/cartSlice";
 
 const Header = ({ showLogoOnly = false }) => {
-	const cart = useSelector((state) => state.cart);
+	const cartItems = useSelector(selectCartItems);
+	const cartItemsCount = cartItems.length;
 
 	return (
 		<header>
@@ -42,7 +44,7 @@ const Header = ({ showLogoOnly = false }) => {
 							<Link to="/checkout">
 								<div className={styles.cart}>
 									<span className={styles.badge}>
-										{cart.numberOfItems}
+										{cartItemsCount}
 									</span>
 									<ShoppingCartIcon
 										className={styles.cartIcon}

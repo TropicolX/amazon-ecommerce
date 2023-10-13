@@ -1,3 +1,6 @@
+import { useDispatch } from "react-redux";
+import { removeFromCart } from "../store/cartSlice";
+
 const CheckoutProduct = ({
 	id,
 	name,
@@ -9,11 +12,20 @@ const CheckoutProduct = ({
 	ratings_count,
 	hasPrime,
 }) => {
+	const dispatch = useDispatch();
+
+	const removeProduct = () => {
+		dispatch(removeFromCart(id));
+	};
+
 	return (
 		<div>
-			<h1>
-				{name} - ${price}
-			</h1>
+			<h3>
+				{name} - ${price}{" "}
+				<button className="inline-btn" onClick={removeProduct}>
+					Remove
+				</button>
+			</h3>
 		</div>
 	);
 };

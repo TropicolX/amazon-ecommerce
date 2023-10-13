@@ -4,10 +4,12 @@ import Rate from "rc-rate";
 import { StarIcon } from "@heroicons/react/solid";
 import { useDispatch } from "react-redux";
 
-import { addToCart } from "../redux";
+import { addToCart } from "../store/cartSlice";
 
 import styles from "../styles/Product.module.scss";
 import "rc-rate/assets/index.css";
+import useDiscountedPrice from "../hooks/useDiscountedPrice";
+import { useEffect } from "react";
 
 const Product = ({
 	id,
@@ -18,11 +20,16 @@ const Product = ({
 	image,
 	average_rating,
 	ratings_count,
+	discount,
 }) => {
 	const dispatch = useDispatch();
+	const { discountedPrice, calculateDiscount } = useDiscountedPrice(
+		price,
+		discount
+	);
 
+	const [added, setAdded] = useState(false);
 	const [hasPrime] = useState(Math.random() < 0.5);
-	const star = <StarIcon className={styles.star} />;
 
 	const addProduct = () => {
 		const product = {
@@ -36,7 +43,12 @@ const Product = ({
 			ratings_count,
 		};
 		dispatch(addToCart(product));
+		setAdded(true);
 	};
+
+	useEffect(() => {
+		calculateDiscount();
+	}, []);
 
 	return (
 		<div className={styles.productCard}>
@@ -53,7 +65,7 @@ const Product = ({
 				disabled={true}
 				allowHalf={true}
 				allowClear={false}
-				character={star}
+				character={<StarIcon className={styles.star} />}
 			/>
 			{!hasPrime && (
 				<img
@@ -64,9 +76,19 @@ const Product = ({
 			)}
 			<p className={styles.description}>{description}</p>
 			<div className={styles.price}>
-				<Currency quantity={price} currency="USD" />
+				{discountedPrice ? (
+					<>
+						<s>${price}</s> <span>${discountedPrice}</span>
+					</>
+				) : (
+					"..."
+				)}
 			</div>
-			<button className={styles.button} onClick={addProduct}>
+			<button
+				className={styles.button}
+				onClick={addProduct}
+				disabled={added}
+			>
 				Add to cart
 			</button>
 		</div>

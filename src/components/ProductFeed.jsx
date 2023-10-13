@@ -17,7 +17,7 @@ const ProductFeed = ({ products }) => {
 			return null; // Return null for cells outside the range of products
 		}
 
-		const { id, title, price, description, category, images } =
+		const { id, title, price, description, category, images, discount } =
 			products[index];
 		return (
 			<div style={style}>
@@ -31,6 +31,7 @@ const ProductFeed = ({ products }) => {
 					image={images[0]}
 					average_rating={5}
 					ratings_count={20}
+					discount={discount}
 				/>
 			</div>
 		);

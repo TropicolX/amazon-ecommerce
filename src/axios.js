@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = " https://api.escuelajs.co/api/v1/";
+const baseURL = "https://api.escuelajs.co/api/v1/";
 
 const access_token = () => {
 	if (typeof window !== "undefined") {
