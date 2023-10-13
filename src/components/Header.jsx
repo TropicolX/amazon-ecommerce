@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 import styles from "../styles/Header.module.scss";
 import { selectCartItems } from "../store/cartSlice";
+import { logoUrl } from "../constants";
 
 const Header = ({ showLogoOnly = false }) => {
 	const cartItems = useSelector(selectCartItems);
@@ -22,7 +23,7 @@ const Header = ({ showLogoOnly = false }) => {
 						<div className={styles.logoWrap}>
 							<img
 								alt="logo"
-								src="https://links.papareact.com/f90"
+								src={logoUrl}
 								className={styles.logo}
 							/>
 						</div>

@@ -5,28 +5,38 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductFeed from "../components/ProductFeed";
 import Loading from "../components/Loading";
+import { amazonChoiceUrl, bannerUrl, logoUrl } from "../constants";
+import { calculateDiscountedPrices, preloadImages } from "../utils";
+
+const worker = new Worker("/discountCalculatorWorker.js");
+const imagesToPreload = [bannerUrl, logoUrl, amazonChoiceUrl];
 
 export default function Home() {
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(true);
 
-	useEffect(() => {
-		const getProducts = async () => {
-			const products = await axios
-				.get("products/?offset=0&limit=30")
-				.then((response) => response.data);
-			const finalProducts = products.map((product) => {
-				const newProduct = {
-					...product,
-					discount: Math.floor(Math.random() * 10) + 1,
-				};
-				return newProduct;
-			});
-			setProducts(finalProducts);
-			setLoading(false);
-		};
+	const fetchProducts = async () => {
+		const products = await axios
+			.get("products/?offset=0&limit=30")
+			.then((response) => response.data);
 
-		getProducts();
+		const updatedProducts = await calculateDiscountedPrices(
+			worker,
+			products
+		);
+
+		setProducts(updatedProducts);
+		setLoading(false);
+	};
+
+	useEffect(() => {
+		// Preload images and fetch data
+		const cleanupPreload = preloadImages(imagesToPreload, fetchProducts);
+
+		// Clean up preloaded images when the component is unmounted
+		return () => {
+			cleanupPreload();
+		};
 	}, []);
 
 	if (loading) return <Loading />;

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Currency from "react-currency-formatter";
 import Rate from "rc-rate";
 import { StarIcon } from "@heroicons/react/solid";
 import { useDispatch } from "react-redux";
@@ -8,8 +7,7 @@ import { addToCart } from "../store/cartSlice";
 
 import styles from "../styles/Product.module.scss";
 import "rc-rate/assets/index.css";
-import useDiscountedPrice from "../hooks/useDiscountedPrice";
-import { useEffect } from "react";
+import { amazonChoiceUrl } from "../constants";
 
 const Product = ({
 	id,
@@ -20,13 +18,9 @@ const Product = ({
 	image,
 	average_rating,
 	ratings_count,
-	discount,
+	discountedPrice,
 }) => {
 	const dispatch = useDispatch();
-	const { discountedPrice, calculateDiscount } = useDiscountedPrice(
-		price,
-		discount
-	);
 
 	const [added, setAdded] = useState(false);
 	const [hasPrime] = useState(Math.random() < 0.5);
@@ -45,10 +39,6 @@ const Product = ({
 		dispatch(addToCart(product));
 		setAdded(true);
 	};
-
-	useEffect(() => {
-		calculateDiscount();
-	}, []);
 
 	return (
 		<div className={styles.productCard}>
@@ -70,7 +60,7 @@ const Product = ({
 			{!hasPrime && (
 				<img
 					alt="amazon-choice"
-					src="https://m.media-amazon.com/images/G/01/amazonsChoice/acBadge-p13n.svg"
+					src={amazonChoiceUrl}
 					className={styles.amazonChoice}
 				/>
 			)}
