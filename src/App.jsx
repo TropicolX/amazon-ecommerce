@@ -4,7 +4,7 @@ import Loading from "./components/Loading";
 
 // Lazy loading components
 const Home = lazy(() => import("./pages/Home"));
-const Checkout = lazy(() => import("./pages/Checkout"));
+const Checkout = lazy(() => import("./pages/Out"));
 
 const App = () => {
 	return (
