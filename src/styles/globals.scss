@@ -1,4 +1,4 @@
-@import "utilities";
+@use "utilities";
 
 * {
 	padding: 0;
@@ -8,7 +8,7 @@
 
 html,
 body {
-	font-family: $font-stack;
+	font-family: utilities.$font-stack;
 }
 
 a {
@@ -25,7 +25,7 @@ main {
 }
 
 .home {
-	background: $bg-gray;
+	background: utilities.$bg-gray;
 }
 
 ul {
@@ -40,7 +40,7 @@ ul {
 	justify-content: center;
 
 	svg {
-		color: $amazon-yellow;
+		color: utilities.$amazon-yellow;
 		animation: spin 1s linear infinite;
 	}
 
