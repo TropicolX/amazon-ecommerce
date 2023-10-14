@@ -23,7 +23,6 @@ const Product = ({
 	average_rating,
 }) => {
 	const dispatch = useDispatch();
-
 	const [added, setAdded] = useState(false);
 	const [hasPrime] = useState(Math.random() < 0.5);
 
