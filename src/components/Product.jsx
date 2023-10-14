@@ -47,7 +47,6 @@ const Product = ({
 			<p className={styles.category}>{category}</p>
 			<LazyImage
 				alt="product-image"
-				loading="lazy"
 				src={image}
 				className={styles.image}
 			/>
@@ -60,7 +59,7 @@ const Product = ({
 				character={<StarIcon className={styles.star} />}
 			/>
 			{!hasPrime && (
-				<img
+				<LazyImage
 					alt="amazon-choice"
 					src={amazonChoiceUrl}
 					className={styles.amazonChoice}
