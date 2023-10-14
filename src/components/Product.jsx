@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 
 import { addToCart } from "../store/cartSlice";
 import { amazonChoiceUrl } from "../constants";
-import LazyImage from "./LazyImage";
 
 import styles from "../styles/Product.module.scss";
 import "rc-rate/assets/index.css";
@@ -36,6 +35,7 @@ const Product = ({
 			image,
 			average_rating,
 			ratings_count,
+			discountedPrice,
 		};
 		dispatch(addToCart(product));
 		setAdded(true);
@@ -44,11 +44,7 @@ const Product = ({
 	return (
 		<div className={styles.productCard}>
 			<p className={styles.category}>{category}</p>
-			<LazyImage
-				alt="product-image"
-				src={image}
-				className={styles.image}
-			/>
+			<img alt="product-image" src={image} className={styles.image} />
 			<h4 className={styles.name}>{name}</h4>
 			<Rate
 				value={average_rating}
@@ -58,7 +54,7 @@ const Product = ({
 				character={<StarIcon className={styles.star} />}
 			/>
 			{!hasPrime && (
-				<LazyImage
+				<img
 					alt="amazon-choice"
 					src={amazonChoiceUrl}
 					className={styles.amazonChoice}

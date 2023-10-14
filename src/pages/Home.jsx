@@ -5,25 +5,32 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductFeed from "../components/ProductFeed";
 import Loading from "../components/Loading";
-import { amazonChoiceUrl, bannerUrl, logoUrl } from "../constants";
-import { calculateDiscountedPrices, preloadImages } from "../utils";
-
-const worker = new Worker("/discountCalculatorWorker.js");
-const imagesToPreload = [bannerUrl, logoUrl, amazonChoiceUrl];
 
 export default function Home() {
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(true);
+
+	function calculateDiscount({ productPrice, discount }) {
+		// Perform complex discount calculation here
+		const discountAmount = (productPrice * discount) / 100;
+		const discountedPrice = (productPrice - discountAmount).toFixed(0);
+
+		return discountedPrice;
+	}
 
 	const fetchProducts = async () => {
 		const products = await axios
 			.get("products/?offset=0&limit=9")
 			.then((response) => response.data);
 
-		const updatedProducts = await calculateDiscountedPrices(
-			worker,
-			products
-		);
+		const updatedProducts = products.map((product) => {
+			const discount = Math.floor(Math.random() * 100);
+			const discountedPrice = calculateDiscount({
+				productPrice: product.price,
+				discount,
+			});
+			return { ...product, discountedPrice };
+		});
 
 		setProducts(updatedProducts);
 		return updatedProducts;
@@ -31,14 +38,7 @@ export default function Home() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const products = await fetchProducts();
-
-			const firstThreeProductImages = products
-				.slice(0, 3)
-				.map((product) => product.images[0]);
-
-			// Preload images and fetch data
-			preloadImages([...imagesToPreload, ...firstThreeProductImages]);
+			await fetchProducts();
 			setLoading(false);
 		};
 
