@@ -17,7 +17,7 @@ export default function Home() {
 
 	const fetchProducts = async () => {
 		const products = await axios
-			.get("products/?offset=0&limit=9")
+			.get("products/")
 			.then((response) => response.data);
 
 		const updatedProducts = await calculateDiscountedPrices(
@@ -38,7 +38,10 @@ export default function Home() {
 				.map((product) => product.images[0]);
 
 			// Preload images and fetch data
-			preloadImages([...imagesToPreload, ...firstThreeProductImages]);
+			await preloadImages([
+				...imagesToPreload,
+				...firstThreeProductImages,
+			]);
 			setLoading(false);
 		};
 
