@@ -1,17 +1,7 @@
 import { useDispatch } from "react-redux";
 import { removeFromCart } from "../store/cartSlice";
 
-const CheckoutProduct = ({
-	id,
-	name,
-	price,
-	description = "",
-	category,
-	image,
-	average_rating,
-	ratings_count,
-	hasPrime,
-}) => {
+const CheckoutProduct = ({ id, name, price }) => {
 	const dispatch = useDispatch();
 
 	const removeProduct = () => {

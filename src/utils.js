@@ -1,10 +1,3 @@
-// export const preloadImages = (images) => {
-// 	images.forEach((imageUrl) => {
-// 		const img = new Image();
-// 		img.src = imageUrl;
-// 	});
-// };
-
 export const preloadImages = async (srcArray) => {
 	const promises = await srcArray.map((src) => {
 		return new Promise(function (resolve, reject) {

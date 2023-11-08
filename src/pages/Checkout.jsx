@@ -1,10 +1,11 @@
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
 import CheckoutProduct from "../components/CheckoutProduct";
 import Header from "../components/Header";
-import styles from "../styles/Checkout.module.scss";
-import { useMemo } from "react";
 import { selectCartItems } from "../store/cartSlice";
+
+import styles from "../styles/Checkout.module.scss";
 
 const Checkout = () => {
 	const cartItems = useSelector(selectCartItems);

@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
+
+import { amazonChoiceUrl, bannerUrl, logoUrl } from "../constants";
 import axios from "../axios";
 import Banner from "../components/Banner";
+import { calculateDiscountedPrices, preloadImages } from "../utils";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import ProductFeed from "../components/ProductFeed";
 import Loading from "../components/Loading";
-import { amazonChoiceUrl, bannerUrl, logoUrl } from "../constants";
-import { calculateDiscountedPrices, preloadImages } from "../utils";
+import ProductFeed from "../components/ProductFeed";
 
 const worker = new Worker("/discountCalculatorWorker.js");
 const imagesToPreload = [bannerUrl, logoUrl, amazonChoiceUrl];
